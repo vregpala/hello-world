@@ -1,0 +1,25 @@
+name: Mule application build
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        type: environment
+        required: true
+      skip-tests:
+        description: 'Skip Munit tests'
+        type: boolean
+        required: true
+        default: false
+
+env:
+  BUILD_VERSION: ${{ format('{0}.{1}', vars.VERSION, github.run_number) }}
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest #change
+    steps:
+    - name: Echo
+      run: |
+        echo $BUILD_VERSION
