@@ -21,6 +21,8 @@ jobs:
   Setup:
     runs-on: ubuntu-latest #change
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 
       - name: Create environment
         run: |
           curl -X PUT \
