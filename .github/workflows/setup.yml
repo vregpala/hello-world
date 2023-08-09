@@ -20,7 +20,6 @@ env:
 jobs:
   Setup:
     runs-on: ubuntu-latest #change
-    permissions: write-all
     steps:
       - name: Create environment
         run: |
@@ -28,4 +27,6 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H 'Authorization: Bearer ${{ github.event.inputs.token }}' \
           https://api.github.com/repos/${{ github.repository }}/environments/${{ github.event.inputs.environment }}
-          
+      - name: Add version
+        run: |
+          gh variable set VERSION --body "1.0.0"
