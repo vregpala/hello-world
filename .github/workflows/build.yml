@@ -23,7 +23,7 @@ jobs:
     - name: Echo
       run: |
         major=test
-        MINOR=echo ${{ vars.VERSION }} | cut -d "." -f 2
+        MINOR=$(${{ vars.VERSION }} | cut -d "." -f 2)
         PATCH=${{ vars.VERSION }} | cut -d "." -f 3
         
         echo ${{ vars.VERSION }}
