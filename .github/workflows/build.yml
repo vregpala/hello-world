@@ -26,4 +26,4 @@ jobs:
         MINOR=${{ vars.VERSION }} | cut -d "." -f 2
         PATCH=${{ vars.VERSION }} | cut -d "." -f 3
         echo ${{ vars.VERSION }}
-        echo MAJOR.MINOR.PATCH
+        echo "$MAJOR"."$MINOR"."$PATCH"
