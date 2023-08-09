@@ -27,10 +27,12 @@ jobs:
           -H "Accept: application/vnd.github+json" \
           -H 'Authorization: Bearer ${{ github.event.inputs.token }}' \
           $GIT_URL/environments/${{ github.event.inputs.environment }}
-      - name: Add version
+      - name: Add repository variables
         run: |
           curl -X POST \
           -H "Accept: application/vnd.github+json" \
           -H 'Authorization: Bearer ${{ github.event.inputs.token }}' \
           $GIT_URL/actions/variables \
-          -d '{"name":"VERSION","value":"1.0.0"}'
+          -d '{"name":"VERSION","value":"1.0.0", \
+          "name":"PROXY_HOST","value":"some host", \
+          "name":"PROXY_PORT","value":"some port",}'
