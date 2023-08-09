@@ -20,6 +20,7 @@ env:
 jobs:
   Setup:
     runs-on: ubuntu-latest #change
+    permissions: write-all
     steps:
       - name: Create environment
         run: |
