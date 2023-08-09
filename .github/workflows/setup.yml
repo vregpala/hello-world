@@ -24,13 +24,13 @@ jobs:
       - name: Create environment
         run: |
           curl -X PUT \
-          -H "Accept: application/vnd.github.v3+json" \
+          -H "Accept: application/vnd.github+json" \
           -H 'Authorization: Bearer ${{ github.event.inputs.token }}' \
           $GIT_URL/environments/${{ github.event.inputs.environment }}
       - name: Add version
         run: |
-          curl -X PUT \
-          -H "Accept: application/vnd.github.v3+json" \
+          curl -X POST \
+          -H "Accept: application/vnd.github+json" \
           -H 'Authorization: Bearer ${{ github.event.inputs.token }}' \
-          https://api.github.com/repos/${{ github.repository }}/actions/variables \
+          $GIT_URL/actions/variables \
           -d '{"name":"VERSION","value":"1.0.0"}'
