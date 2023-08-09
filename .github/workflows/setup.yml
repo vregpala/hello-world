@@ -20,8 +20,9 @@ jobs:
     steps:
       - name: Create environment
         run: |
-          curl -X PUT \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-          https://api.github.com/repos/${{ github.repository }}/environments/${{ github.event.inputs.environment }}
+          gh api --method PUT -H "Accept: application/vnd.github+json" repos/vregpala/hello-world/environments/dummy
+#          curl -X PUT \
+#          -H "Accept: application/vnd.github.v3+json" \
+#          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+#          https://api.github.com/repos/${{ github.repository }}/environments/${{ github.event.inputs.environment }}
           
