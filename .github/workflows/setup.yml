@@ -15,22 +15,22 @@ on:
         required: true
 
 env:
-  BUILD_VERSION: ${{ format('{0}.{1}', vars.VERSION, github.run_number) }}
+  GIT_URL: https://api.github.com/repos/${{ github.repository }}
 
 jobs:
   Setup:
     runs-on: ubuntu-latest #change
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3 
       - name: Create environment
         run: |
           curl -X PUT \
           -H "Accept: application/vnd.github.v3+json" \
           -H 'Authorization: Bearer ${{ github.event.inputs.token }}' \
-          https://api.github.com/repos/${{ github.repository }}/environments/${{ github.event.inputs.environment }}
+          $GIT_URL/environments/${{ github.event.inputs.environment }}
       - name: Add version
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          gh variable set VERSION --body "1.0.0"
+          curl -X PUT \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H 'Authorization: Bearer ${{ github.event.inputs.token }}' \
+          $GIT_URL/actions/variable \
+          -d '{"name":"VERSION","value":"1.0.0"}'
