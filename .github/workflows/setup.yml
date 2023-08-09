@@ -1,0 +1,23 @@
+name: Setup
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        type: choice
+        options:
+        - DEV
+        - SIT
+
+env:
+  BUILD_VERSION: ${{ format('{0}.{1}', vars.VERSION, github.run_number) }}
+
+jobs:
+  Setup:
+    runs-on: ubuntu-latest #change
+    steps:
+      - name: Create environment
+        run: |
+          echo gh api --method PUT -H "Accept: application/vnd.github+json" repos/${{ github.repository }}/environments/${{ github.event.inputs.environment }}
+          
