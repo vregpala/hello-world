@@ -22,8 +22,8 @@ jobs:
     steps:
     - name: Echo
       run: |
-        MAJOR=${{ vars.VERSION }} | cut -d "." -f 1
+        major=${{ vars.VERSION }} | cut -d "." -f 1
         MINOR=${{ vars.VERSION }} | cut -d "." -f 2
         PATCH=${{ vars.VERSION }} | cut -d "." -f 3
         echo ${{ vars.VERSION }}
-        echo "$MAJOR"."$MINOR"."$PATCH"
+        echo $major."$MINOR"."$PATCH"
