@@ -24,9 +24,10 @@ jobs:
       env:
         VERSION: ${{ vars.VERSION }}
       run: |
-        major=test
+        major=$("$VERSION" | cut -d "." -f 1)
         MINOR=$("$VERSION" | cut -d "." -f 2)
         PATCH=$VERSION | cut -d "." -f 3
         
         echo $VERSION
+        echo $("$VERSION" | cut -d "." -f 1)
         echo $major.$MINOR."$PATCH"
