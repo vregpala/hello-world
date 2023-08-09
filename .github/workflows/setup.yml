@@ -20,7 +20,13 @@ env:
 jobs:
   Setup:
     runs-on: ubuntu-latest #change
+    permissions: write-all
     steps:
+      - name: Create environment2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api --method PUT -H "Accept: application/vnd.github+json" repos/vregpala/hello-world/environments/dummy
       - name: Create environment
         run: |
           curl -X PUT \
