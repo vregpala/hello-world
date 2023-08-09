@@ -19,6 +19,8 @@ jobs:
     permissions: write-all
     steps:
       - name: Create environment
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api --method PUT -H "Accept: application/vnd.github+json" repos/vregpala/hello-world/environments/dummy
 #          curl -X PUT \
