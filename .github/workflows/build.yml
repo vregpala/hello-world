@@ -21,10 +21,12 @@ jobs:
     runs-on: ubuntu-latest #change
     steps:
     - name: Echo
+      env:
+        VERSION: ${{ vars.VERSION }}
       run: |
         major=test
-        MINOR=$(${{ vars.VERSION }} | cut -d "." -f 2)
-        PATCH=${{ vars.VERSION }} | cut -d "." -f 3
+        MINOR=$($VERSION | cut -d "." -f 2)
+        PATCH=$VERSION | cut -d "." -f 3
         
         echo ${{ vars.VERSION }}
         echo $major."$MINOR"."$PATCH"
