@@ -20,6 +20,7 @@ env:
 jobs:
   Setup:
     runs-on: ubuntu-latest #change
+    environment: DEV
     steps:
       - name: Create environment2
         run: |
